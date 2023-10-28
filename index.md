@@ -1,5 +1,5 @@
-Here you can say lots of fun things about your site.
+Welcome to my Blog! 
 
-Maybe say a some things about yourself.
+My name is Brandon and I'm an aspiring IT professional. I have already completed my CCNA and I am on the cusp of obtaining my Solutions Architect Associate certification for AWS.
 
-Or maybe what you plan to blog about.
+This blog is supposed to be for the documentation of my projects and trials I go through completing them.
