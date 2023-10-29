@@ -32,12 +32,24 @@ Recap: We established a LAN interface. We have setup our two endpoints for our V
 **(VPC Services)**
 1. We will establish our newly added routes to our VPC by going to Route tables. Then we will edit our AWS route table by enabling routing propagation. This will allow the AWS side of the architecture via our VPG to add the onprem network to its route table.
 2.Go back to route tables and we shall edit the route table of our onprem private instance. This time by adding an ENI (Elastic Network Interface) with 10.16.0.0/16 that we established in our "ONPREMISE pfSense Config". Now we have to where both our onprem and vpc are able to reach each other via their respective route tables. Now the issue is customizing our security group for proper communication.
-3. Now go to Security section and click Security groups. We are going to edit our AWS SG (Security Group) by editing the "InBound Rules" and adding a rule by allowing "All Traffic" and allowing the network 192.168.0.0/21. This will allow anything with the onprem network range to connect with our AWS infrastructure.
+3. Now go to Security section and click Security groups. We are going to edit our AWS SG (Security Group) by editing the "InBound Rules" and adding a rule by allowing "All Traffic" and allowing the network 192.168.8.0/21. This will allow anything with the onprem network range to connect with our AWS infrastructure.
 4. We shall do the same for our OnPrem SG by editing "InBound Rules" and adding a rule by allowing "All Traffic" and allow the network 10.16.0.0/16. This will allow anything within the VPC to connect with our OnPrem.
 5. Then we do the same for our Router instance. This time in "Inbound Rules" we shall allow "All Traffic" and allow the default SG of our onPrem. Which will allow our subnets to use VPN.
 
 Recap: We setup our routing tables which will allow our AWS and Onprem to reach via their routing tables. We edited our SGs to allow the specific networks to have access to our infrastructure.
 
-**Testing:** We need to test and see if all our configurations are correct.
+**Testing:** We need to test and see if all our configurations are correct. We are going to access our architecture via Remote access to our OnPrem Server.
 **(EC2 Services)**
-1. Right Click and click connect on our OnPrem Server. Click "RDP Client" and we are going to connect Fleet Manager via SSM (Simple Systems Manager) by obtaining our password. That key pair that we established at the beginning should be uploaded here so you can decrypt the password. This you are now able to connect by Fleet Manager by inputting your credentials. 
+1. Right Click and click connect on our OnPrem Server. Click "RDP Client" and we are going to connect Fleet Manager via SSM (Simple Systems Manager) by obtaining our password. That key pair that we established at the beginning should be uploaded here so you can decrypt the password. This you are now able to connect by Fleet Manager by inputting your credentials.
+2. To test we are going to ping the AWS server and browse to it. The pings should respond quite quick and in the browser of Internet Explorer put the Private Ipv4 address of the AWS server in the url box. If you connect via https everything is properly configured.
+
+Recap: We tested the connections by pinging and utilizing the browser on our onprem server.
+
+**Cleaning:** We shall clean up the architecture to return the account back to normal.
+(VPC Services)
+1. Delete Site-to-Site VPN created under the "Virtual Private Network"
+2. Move to Virtual Private Gateway next and detech from VPC and then delete the VPG created.
+(CloudFormation services)
+3. Finally, delete the stack from the beginning and the account should return back.
+
+**Issues:** The project was mostly no issues. but I did encounter my instance connection cutting off when attempting to do something, such as copying the Private IPV4 address that was required to test the ping. I did run into no response from the server and this made me retrace my steps on the configurations. I found I had misinput the wrong address for the onPrem SG, which would not allow the communication from the OnPrem Server to the AWS Server.
