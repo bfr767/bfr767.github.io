@@ -18,6 +18,7 @@ Recap: I have made two gateways, one for the client onprem and the other for the
 
 **(EC2 Services)**
 1. We are going to need the password for the router for the pfsense configuration. Which can be accessed my right-click and going to "Monitor and troubleshoot>Get Systemlog". We will need this to login to pfsense configuration site.
+
 **(pfSense site)**
 2. There we will go to Interfaces and add another entry which will become the LAN. Click Interfaces again, and set it up with DHCP then save and apply changes.
 3. Next Click VPN, and we are going to setup the phase 1 and phase 2 VPN tunnels for our endpoints.
