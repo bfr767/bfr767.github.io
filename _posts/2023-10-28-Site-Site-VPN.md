@@ -41,6 +41,7 @@ Recap: We established a LAN interface. We have setup our two endpoints for our V
 Recap: We setup our routing tables which will allow our AWS and Onprem to reach via their routing tables. We edited our SGs to allow the specific networks to have access to our infrastructure.
 
 **Testing:** We need to test and see if all our configurations are correct. We are going to access our architecture via Remote access to our OnPrem Server.
+
 **(EC2 Services)**
 1. Right Click and click connect on our OnPrem Server. Click "RDP Client" and we are going to connect Fleet Manager via SSM (Simple Systems Manager) by obtaining our password. That key pair that we established at the beginning should be uploaded here so you can decrypt the password. This you are now able to connect by Fleet Manager by inputting your credentials.
 2. To test we are going to ping the AWS server and browse to it. The pings should respond quite quick and in the browser of Internet Explorer put the Private Ipv4 address of the AWS server in the url box. If you connect via https everything is properly configured.
