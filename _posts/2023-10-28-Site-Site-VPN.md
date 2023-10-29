@@ -3,6 +3,9 @@ I will be setting up a Site2SiteVPN for this project.
 The AWSs that will used the most are EC2, VPC, and CloudFormation.
 I have subscribed to the Pfsense firewall for AWS as that will come later on during this project.
 
+![image](https://github.com/bfr767/bfr767.github.io/assets/143942461/b1db59fb-078e-49fa-8343-0effeac07ccc)
+
+
 **Setup:** I will be using a prepared stack via CloudFormation by Adrian Cantril, but I will be creating my own key pair as per required for this project.
 
 **AWS VPN:** The initial parts of this project will be more focused on the AWS architecture before we eventually get to the endhost/client side. I'll be setting up a CGW (Customer Gateway) and VPG (Virtual Private Gateway) that will also consist of two different end points in different AZs (Availability Zones) for the AWS Network. This will allow access for the client to the VPC (Virtual Private Cloud) via VPN (Virtual Private Network) tunnel.
