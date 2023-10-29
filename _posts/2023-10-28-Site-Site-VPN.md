@@ -20,6 +20,7 @@ Recap: I have made two gateways, one for the client onprem and the other for the
 1. We are going to need the password for the router for the pfsense configuration. Which can be accessed my right-click and going to "Monitor and troubleshoot>Get Systemlog". We will need this to login to pfsense configuration site.
 
 **(pfSense site)**
+
 2. There we will go to Interfaces and add another entry which will become the LAN. Click Interfaces again, and set it up with DHCP then save and apply changes.
 3. Next Click VPN, and we are going to setup the phase 1 and phase 2 VPN tunnels for our endpoints.
 4. Here you will need to add the Remote Gateway address and PSK (Pre-Shared Key) from the document in last stage on step 3 all under "IPSEC Tunnel 1". Set "Encryption Algorithm" Key length to 128 bits, key group to 2(1024) bit, Hash Algorithm to SHA1, then in "Advanced Options" change MAx Failures to 3 and then save. This setup phase one tunnel endpoint 1.
