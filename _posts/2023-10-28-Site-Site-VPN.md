@@ -51,6 +51,9 @@ Recap: We setup our routing tables which will allow our AWS and Onprem to reach 
 
 Recap: We tested the connections by pinging and utilizing the browser on our onprem server.
 
+![image](https://github.com/bfr767/bfr767.github.io/assets/143942461/87ea4d5d-6ece-4bbc-b8a4-e251beae40fc)
+
+
 **Cleaning:** We shall clean up the architecture to return the account back to normal.
 (VPC Services)
 1. Delete Site-to-Site VPN created under the "Virtual Private Network"
