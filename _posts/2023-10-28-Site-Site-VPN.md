@@ -1,4 +1,4 @@
-## This is my first blog post
+## This is my first blog post (Site to Site VPN Network)
 I will be setting up a Site2SiteVPN for this project.
 The AWSs that will used the most are EC2, VPC, and CloudFormation.
 I have subscribed to the Pfsense firewall for AWS as that will come later on during this project.
