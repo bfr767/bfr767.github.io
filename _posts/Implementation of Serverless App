@@ -1,6 +1,6 @@
 In this post I will be implementing a servless application via AWS services by Adrian Cantrill
 
-This project will involve the usage of Python, Simple Email Services (SES),Step Functions, IAM, Lambda, API Gateway, CloudFormation, and S3 Static Website
+This project will involve the usage of Python, Simple Email Services (SES),Step Functions, IAM, Lambda, API Gateway, CloudWatch, CloudFormation, and S3 Static Website
 
 First we are going to utilize the Simple Email Services and we will be needing two different emails as you need one as the sender and the other to recieve.
 
