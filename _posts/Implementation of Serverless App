@@ -1,2 +1,54 @@
 In this post I will be implementing a servless application via AWS services by Adrian Cantrill
 
+This project will involve the usage of Python, Simple Email Services (SES),Step Functions, IAM, Lambda, API Gateway, CloudFormation, and S3 Static Website
+
+First we are going to utilize the Simple Email Services and we will be needing two different emails as you need one as the sender and the other to recieve.
+
+(SES - Simple Email Services)
+
+1.Go to "Verified Identities" then to "Create Identity"
+2.Click "Email Address" option" and enter one of your emails below, click the link that was sent to your email and become verified
+3.Repeat Step 2 with a different email, decide which one you want to be the sender and the other the reciever.
+
+Recap: We utilized the SES of AWS to configure and verify our designated emails into the architecture.
+
+Second: We'll be adding lambda and some configuration to allow our state machine to use the SES
+
+(CloudFormation)
+
+1. Provided a Preset Stack from Adrian Cantrill to allow the lambda role.
+
+(IAM)
+
+2. Go to "Roles" and look for "LAMBDAROLE" in the list of roles, click it to verify its "trust policies" and "permissions
+
+(LAMBDA)
+
+1. CLick "Create Function", leave on default "Author from Scratch", name it and below change "Runtime" to python (3.11), Click the "Permissions" arrow below that and choose "existing role" and choose your Lambda role from before and hit "Create Function".
+2. Go below to the python file and delete it and copy/paste this: 
+
+import boto3, os, json
+
+FROM_EMAIL_ADDRESS = 'REPLACE_ME'
+
+ses = boto3.client('ses')
+
+def lambda_handler(event, context):
+    # Print event data to logs .. 
+    print("Received event: " + json.dumps(event))
+    # Publish message directly to email, provided by EmailOnly or EmailPar TASK
+    ses.send_email( Source=FROM_EMAIL_ADDRESS,
+        Destination={ 'ToAddresses': [ event['Input']['email'] ] }, 
+        Message={ 'Subject': {'Data': 'Whiskers Commands You to attend!'},
+            'Body': {'Text': {'Data': event['Input']['message']}}
+        }
+    )
+    return 'Success!'
+
+Explaination: This code will import the libraries that will allow this to execute. Utilizing the Boto3 client, it sends an email using data that is passed ot it by the state machine. So when this lambda function is invoked by the state machine it's given this event object and inside this object will be the destination email address to send to as well as a brief message.
+
+3. Replace the "REPLACE_ME" but leave the quotes and replace it with one of the emails from earlier, this will be your sender email
+4. Hit "Deploy" above the python code and wait for it to update, take note of your ARN as you will need it later.
+
+Recap: Created a email reminder lambdda function and given it permissions that it requires to interac with the SES service. You've edidted the placeholder that it will send email from the address that you verified inside the SES service.
+
